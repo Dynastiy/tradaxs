@@ -1,6 +1,6 @@
     @media (max-width: 990px) {
         .container-fluid {
-            padding: 2rem;
+            padding: 1rem 2rem;
         }
        #web {
            display: none;
