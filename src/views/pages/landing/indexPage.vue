@@ -9,17 +9,17 @@
               <p class="small w-75">Get trained and exchange digital currencies using different payment methods with us. Create your tradax account to begin</p>
               <div class="mt-4">
                   <div class="input--field row align-items-center">
-                      <div class="col-6">
-                          <input type="search" placeholder="Email Address">
+                      <div class="col">
+                          <input type="search" class="w-100 d-block" placeholder="Email Address">
                       </div>
-                      <div class="col-6">
+                      <div class="col text-right">
                           <button>Get Started</button>
                       </div>
                   </div>
               </div>
             </div>
             <div class="right--side text-right"  data-aos="fade-down-right">
-              <img src="@/assets/img/hero-image.svg" width="100%" alt="" />
+              <img src="@/assets/img/image.png" width="100%" alt="" />
             </div>
           </div>
         </div>
