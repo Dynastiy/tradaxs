@@ -1,0 +1,262 @@
+@import url('@/assets/css/partials.css');
+body {
+    background-color: #fff;
+    overflow-x: hidden;
+}
+
+body.active {
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 999;
+}
+
+.container-fluid {
+    padding: 0.2rem 2.5rem;
+}
+
+.row {
+    padding: 0 ;
+    margin: 0;
+}
+
+.app--header {
+    background-color: var(--main-color);
+    padding: 0.8rem 0;
+}
+
+
+.a,
+.b,
+.c,
+.d,
+.e,
+.A,
+.B,
+.C,
+.D,
+.E {
+    background: #FF0000 !important;
+    color: #fff;
+}
+
+.f,
+.g,
+.h,
+.i,
+.j,
+.J,
+.I,
+.H,
+.G,
+.F {
+    background: #FFB20F;
+}
+
+.K,
+.L,
+.M,
+.N,
+.O,
+.P,
+.m,
+.n,
+.o,
+.p,
+.k,
+.l {
+    background: #000;
+    color: #fff;
+}
+
+.q,
+.r,
+.s,
+.t,
+.u,
+.Q,
+.R,
+.S,
+.T,
+.U {
+    background: #01445f;
+    color: #fff;
+}
+
+.v,
+.w,
+.x,
+.y,
+.z,
+.V,
+.W,
+.X,
+.Y,
+.Z {
+    background: rgb(11, 100, 11);
+    color: #fff;
+}
+
+.main--btn button {
+    background: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 0.4rem 2rem;
+}
+
+.menu--item ul li a {
+    color: #fff;
+    font-size: 0.9rem;
+}
+.hero--section .container-fluid {
+    display: grid;
+    grid-template-columns:40% 60%;
+    margin: 3rem 0;
+    /* height: 60vh; */
+    align-items: center;
+}
+.left--side h1 {
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 4rem;
+    color: #000;
+}
+.left--side p {
+    color: #000;
+}
+.span {
+    color: var(--secondary-color);
+}
+.input--field input {
+    background-color: #F2F2F2;
+    border: none;
+    border-radius: 5px;
+    padding: 0.6rem 1rem;
+}
+.input--field input::placeholder {
+    font-size: 0.8rem;
+}
+.input--field button {
+    padding: 0.7rem 2rem;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--main-color);
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.8rem;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.7);
+}
+.text--color {
+    color: var(--main-color);
+}
+
+.features {
+    display: grid ;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.feature--card {
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 10px;
+}
+.feature--card h5 {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #000;
+}
+.feature--card p {
+    font-size: 0.8rem;
+    color: #000;
+}
+.feature--card img {
+    width: 35px;
+}
+
+.trading {
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+    width: 70%;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 10px;
+}
+.trading .input--area {
+    background-color: #f6f5f5;
+    padding: 1rem;
+}
+
+.create--account button {
+    padding: 0.6rem 2rem;
+    color: #fff;
+    background-color: var(--main-color);
+    border: none;
+    border-radius: 10px;
+}
+.testimonials {
+    display: grid;
+    width: 70%;
+    margin: 0 auto;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+}
+
+.testimonials .feature--card {
+    position: relative;
+}
+
+.testimonials .feature--card img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    top: -30px;
+}
+
+
+/* Footer  */
+
+
+.footer {
+    background: var(--main-color);
+    margin-top: 3.3rem;
+    margin: 0 auto;
+}
+
+.footer a,
+.footer p {
+    color: var(--gray-200);
+}
+
+.footer a:hover {
+    color: var(--gray-100);
+}
+
+.footer h5 {
+    color:var(--gray-200);
+}
+
+
+/* App Header Toggle  */
+#mobile {
+    display: none;
+}
+
+
+.menu--item.mobile {
+    position: fixed;
+    min-height: 100vh;
+    right: -1000px;
+    top: 0;
+    background-color: #1b3593f0;
+    z-index: 999;
+    width: 80%;
+}
+.menu--item.mobile.active {
+    right: 0;
+}
+.menu--item.mobile a {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}

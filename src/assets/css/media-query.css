@@ -1,0 +1,39 @@
+    @media (max-width: 990px) {
+        .container-fluid {
+            padding: 1rem;
+        }
+       #web {
+           display: none;
+       }
+       #mobile {
+           display: block;
+       }
+       .hero--section .container-fluid {
+           grid-template-columns: auto;
+       }
+       .hero--section .container-fluid img {
+           width: 100%;
+           margin-top: 3rem;
+       }
+       .hero--section .container-fluid h1 {
+           font-size: 2rem;
+           text-align: center;
+           line-height: 48px;
+       }
+       .left--side p{
+           width: 100% !important;
+       }
+       .features {
+           grid-template-columns: 1fr 1fr;
+       }
+       .text--color {
+           font-size: 1.5rem;
+           width: 100% !important;
+       }
+       .trading {
+           width: 100%;
+       }
+       .testimonials {
+           width: 100%;
+       }
+    }
