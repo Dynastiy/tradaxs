@@ -24,10 +24,10 @@
 
                 <div class="d-flex align-items-center " style="gap:30px">
                     <div class="main--btn" >
-                        <button>Log in</button>
+                        <button @click="login">Log in</button>
                     </div>
                     <div class="main--btn">
-                        <button>Register</button>
+                        <button @click="register">Register</button>
                     </div>
                 </div>
             </div>
@@ -82,7 +82,15 @@ export default {
         return {
             mobile_nav: true,
         }
-    }, 
+    },
+    methods:{
+        login(){
+            this.$router.push('/login')
+        },
+         register(){
+            this.$router.push('/register')
+        }
+    } ,
      mounted(){
         const toggller = document.getElementById("tog");
         const sidee = document.getElementById('side-bar');

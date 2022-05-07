@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/layouts/homeLayout.vue'
+import DashboardView from '../views/layouts/dashboardLayout.vue'
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,39 @@ const routes = [
       },
     ]
   },
+
+
+  // Dashboard Layout
+  {
+    path: '/user',
+    component: DashboardView,
+    children:[
+      {
+        path: '/user',
+        name: 'home',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "about" */ '../views/pages/user/indexPage.vue')
+      },
+      {
+        path: '/stocks',
+        name: 'Stocks',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "about" */ '../views/pages/user/marketCap.vue')
+      },
+      {
+        path: '/profile',
+        name: 'Profile',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "about" */ '../views/pages/user/profilePage.vue')
+      },
+    ]
+  }, 
   {
     path: '/login',
     name: 'login',
@@ -28,13 +62,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/auth/signIn.vue')
   },
   {
-    path: '/about',
-    name: 'about',
+    path: '/register',
+    name: 'register',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    component: () => import(/* webpackChunkName: "about" */ '../views/auth/signUp.vue')
+  },
+  
 ]
 
 const router = new VueRouter({

@@ -36,4 +36,41 @@
        .testimonials {
            width: 100%;
        }
+
+       /* Authentication Pages  */
+       .login--content {
+        width: 80%;
+       }
+
+       /* Dashboard  */
+       #main {
+           margin-left: 0;
+           padding: 1rem 2rem;
+       }
+       .app--drawer {
+        display: none;
+    }
+    .dashboard--header  {
+        display: none;
+    }
+    .wallet--container .top{
+        grid-template-columns: auto;
+    }
+    .top--right {
+        grid-template-columns: auto;
+    }
+    .bottom {
+        grid-template-columns: auto;
+    }
+    .table--view {
+        display: none;
+    }
+    .mobile--table {
+        display: block;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+    .dashboard--mobile {
+        display: block
+    }
     }

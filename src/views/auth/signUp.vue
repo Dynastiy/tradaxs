@@ -8,27 +8,28 @@
                         <h3 class="font-weight-bold small text-dark">Tradaxs</h3>
                     </div>
                     <div class="text-center mb-4">
-                        <h5 class="font-weight-bold text-dark">Login to Dashboard</h5>
-                        <p class="small p--text">Enter your details to Login</p>
+                        <h5 class="font-weight-bold text-dark">Create Account</h5>
+                        <p class="small p--text">Enter your details to Create New Account</p>
                     </div>
                     <div class="form--content">
                         <form action="">
+                            <div class="mb-4">
+                            <label class="mb-2" for="">FULL NAME</label>
+                            <input type="text">
+                        </div>
                         <div class="mb-4">
                             <label class="mb-2" for="">EMAIL</label>
                             <input type="email">
                         </div>
                          <div class="mb-4">
-                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                <label for="">PASSWORD</label>
-                                <span>Forgot Password?</span>
-                            </div>
+                            <label for="">PASSWORD</label>
                             <input type="password">
                         </div>
                         <div class="mb-3">
-                            <button class="auth--button" @click="goToDashboard">Login</button>
+                            <button class="auth--button" @click="goToLogin">Sign up</button>
                         </div>
                         <div class="text-center">
-                            <small class="small font-weight-bold">Don't have an account? <router-link to="/register">Sign Up</router-link> </small>
+                            <small class="small font-weight-bold">Already have an account? <router-link to="/login">Login</router-link> </small>
                         </div>
                     </form>
                     </div>
@@ -38,12 +39,11 @@
     </div>
 </template>
 
-
 <script>
 export default {
     methods:{
-        goToDashboard(){
-            this.$router.push('/user')
+        goToLogin(){
+            this.$router.push('/login')
         }
     }
 }

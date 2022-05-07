@@ -15,6 +15,10 @@ import instance from '@/plugins/axios.js'
 import "toastify-js/src/toastify.css"
 import toastify from 'toastify-js'
 
+import { Icon } from '@iconify/vue2';
+
+Vue.component("IconComponent", Icon)
+
 import VueClipboard from 'vue-clipboard2'
 
 Vue.use(VueClipboard)
@@ -24,6 +28,7 @@ Vue.prototype.$toastify = toastify
     // Vue.use(http)
 
 Vue.config.ignoredElements = [/^ion-/]
+Vue.config.ignoredElements = [/^Icon-/]
 
 Vue.config.productionTip = false
 
