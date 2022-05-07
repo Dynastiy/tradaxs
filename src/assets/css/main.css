@@ -127,17 +127,27 @@ body.active {
 .span {
     color: var(--secondary-color);
 }
+.input--field {
+    background-color: var(--gray-200)
+}
 .input--field input {
-    background-color: #F2F2F2;
+    background-color: transparent;
+    display: block;
+    width: 100%;
     border: none;
     border-radius: 5px;
     padding: 0.6rem 1rem;
+}
+.input--field input:focus{
+    outline: none;
 }
 .input--field input::placeholder {
     font-size: 0.8rem;
 }
 .input--field button {
-    padding: 0.7rem 2rem;
+    display: block;
+    width: 100%;
+    padding: 0.7rem 0;
     border: none;
     border-radius: 5px;
     background-color: var(--main-color);

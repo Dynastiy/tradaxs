@@ -8,13 +8,9 @@
               <h1 class="mb-4"  data-aos="fade-up-right">Learn and trade your crypto with <span class="span">tradaxs</span></h1>
               <p class="small w-75">Get trained and exchange digital currencies using different payment methods with us. Create your tradax account to begin</p>
               <div class="mt-4">
-                  <div class="input--field row align-items-center">
-                      <div class="col">
-                          <input type="search" class="w-100 d-block" placeholder="Email Address">
-                      </div>
-                      <div class="col text-right">
-                          <button>Get Started</button>
-                      </div>
+                  <div class="input--field d-flex align-items-center">
+                      <input type="search" class="" placeholder="Email Address">
+                      <button>Get Started</button>
                   </div>
               </div>
             </div>

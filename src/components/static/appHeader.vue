@@ -3,7 +3,7 @@
         <div class="app--header" id="web">
             <div class="container-fluid d-flex align-items-center justify-content-between">
                 <div class="logo">
-                    <img src="@/assets/img/logo.svg" width="35" alt="" srcset="">
+                    <router-link to="/"><img src="@/assets/img/logo.svg" width="35" alt="" srcset=""></router-link>
                 </div>
                 <div class="menu--item">
                     <ul class="list-unstyled d-flex m-0 align-items-center" style="gap:30px">
@@ -37,7 +37,7 @@
         <div class="app--header" id="mobile">
             <div class="container-fluid d-flex align-items-center justify-content-between">
                 <div class="logo">
-                    <img src="@/assets/img/logo.svg" width="35" alt="" srcset="">
+                    <router-link to="/"><img src="@/assets/img/logo.svg" width="35" alt="" srcset=""></router-link>
                 </div>
                 <div>
                     <Icon icon="codicon:menu" style="font-size:1.6rem" color="white" id="tog"/>
