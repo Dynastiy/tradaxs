@@ -11,8 +11,20 @@
 
             <div class="right--side">
                 
-                <div class="rounded-circle d-flex align-items-center justify-content-center" style="background-color: #E1E5F8; width:30px; height:30px">
+                <!-- <div class="rounded-circle d-flex align-items-center justify-content-center" style="background-color: #E1E5F8; width:30px; height:30px">
                      <IconComponent icon="bx:user" />
+                </div> -->
+                <!-- Default dropleft button -->
+                <div class="btn-group dropleft">
+                <!-- <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    Dropleft
+                </button> -->
+                <div class="rounded-circle d-flex align-items-center justify-content-center" role="button" data-toggle="dropdown" style="background-color: #E1E5F8; width:30px; height:30px">
+                     <IconComponent icon="bx:user" />
+                </div>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="javascript:void(0)" @click="logout">Logout</a>
+                </div>
                 </div>
                
             </div>
@@ -30,6 +42,14 @@ export default {
 // 	},
 // }
 methods:{
+    async logout(){
+       try {
+            let res = await this.$axios.get('/auth/logout')
+        console.log(res);
+       } catch (error) {
+           console.log(error);
+       }
+    },
     goToAssets(){
 
     },

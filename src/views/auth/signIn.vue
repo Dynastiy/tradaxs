@@ -13,19 +13,24 @@
                     </div>
                     <div class="form--content">
                         <form action="">
-                        <div class="mb-4">
+                        <div class="mb-3">
                             <label class="mb-2" for="">EMAIL</label>
-                            <input type="email">
+                            <input type="email" v-model="credentials.email">
                         </div>
-                         <div class="mb-4">
+                         <div class="mb-3">
                             <div class="d-flex align-items-center justify-content-between mb-2">
                                 <label for="">PASSWORD</label>
                                 <span>Forgot Password?</span>
                             </div>
-                            <input type="password">
+                            <input type="password" v-model="credentials.password">
                         </div>
                         <div class="mb-3">
-                            <button class="auth--button" @click="goToDashboard">Login</button>
+                            <div class="d-flex justify-content-center" v-if="loading">
+                                <div class="spinner-border" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                            <button class="auth--button" v-else @click="login">Login</button>
                         </div>
                         <div class="text-center">
                             <small class="small font-weight-bold">Don't have an account? <router-link to="/register">Sign Up</router-link> </small>
@@ -40,9 +45,60 @@
 
 
 <script>
+// import axios from 'axios'
 export default {
+    data(){
+        return{
+            credentials:{
+                email: '',
+                password: ''
+            },
+            loading: false
+        }
+    },
     methods:{
-        goToDashboard(){
+        async login(){
+           this.loading = true
+            let formData = new FormData()
+            formData.append("email", this.credentials.email)
+            formData.append("password", this.credentials.password)
+           try {
+               let res = await this.$axios.post('auth/login', formData
+            //    , {
+            //        headers:{
+            //            'Authorization': 'Bearer 1|WnM7JDwUoOuM3BoCqrDfErQZrw58haoDUvuePhgK'
+            //        }
+            //    }
+               )
+               console.log(res);
+               let token = true;
+               let user = res.data.user[0]
+               this.$store.dispatch("login", {token, user})
+                this.$toastify({
+                    text: "Logged In ",
+                    className: "info",
+                    style: {
+                        background: "green",
+                    }
+                }).showToast();
+                this.$router.push('/user')
+                console.log(this.$store.getters.isAuthenticated);
+           } catch (error) {
+               console.log(error.response);
+               this.$toastify({
+                    text: `${error.response.data.error}`,
+                    className: "info",
+                    style: {
+                        background: "red",
+                    }
+                }).showToast();
+           }
+           this.loading = false
+           this.credentials = {}
+       }
+    },
+    async created(){
+        if(this.$store.getters.isAuthenticated === true ){
             this.$router.push('/user')
         }
     }

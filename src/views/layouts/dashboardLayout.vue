@@ -18,6 +18,12 @@ import MobileHeader from '@/components/static/appHeader'
 export default {
     components:{
         AppHeader, AppDrawer, MobileHeader
+    },
+    async created(){
+        if(this.$store.getters.isAuthenticated === false ){
+            this.$router.push('/login')
+        }
+        console.log(this.$store.getters.getUser);
     }
 }
 </script>

@@ -12,10 +12,7 @@ const instance = axios.create({
     baseURL: BASE_URL,
     headers: {
         "Content-type": "application/json",
-        // "Authorization": `Bearer 1|WnM7JDwUoOuM3BoCqrDfErQZrw58haoDUvuePhgK`,
-        'web_key': 'd797e46b-14d2-4248-a451-1dd60faa9bd0',
-        'token': '1|WnM7JDwUoOuM3BoCqrDfErQZrw58haoDUvuePhgK',
-        "Access-Control-Allow-Origin": "*",
+        'Authorization': 'Bearer 1|WnM7JDwUoOuM3BoCqrDfErQZrw58haoDUvuePhgK',
     }
 });
 
@@ -24,13 +21,11 @@ instance.interceptors.request.use(function(config) {
     // Do something before request is sent
     // alert("requesting")
     // console.log(`1|WnM7JDwUoOuM3BoCqrDfErQZrw58haoDUvuePhgK`);
-    // const token = `1|WnM7JDwUoOuM3BoCqrDfErQZrw58haoDUvuePhgK`;
+    const token = `1|WnM7JDwUoOuM3BoCqrDfErQZrw58haoDUvuePhgK`;
 
-    // if (token) {
-    //     config.headers['Authorization'] = `Bearer ${token}`;
-    //     config.headers['token'] = `${token}`;
-    //     config.headers['web_key'] = `d797e46b-14d2-4248-a451-1dd60faa9bd0`;
-    // }
+    if (token) {
+        config.headers['Authorization'] = `Bearer ${token}`;
+    }
 
     return config;
 }, function(error) {

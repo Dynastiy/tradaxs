@@ -38,7 +38,12 @@
                             <input type="password" v-model="credentials.password">
                         </div>
                         <div class="mb-3">
-                            <button class="auth--button" >Sign up</button>
+                            <div class="d-flex justify-content-center" v-if="loading">
+                                <div class="spinner-border" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                            <button class="auth--button" v-else >Sign up</button>
                         </div>
                         <div class="text-center">
                             <small class="small font-weight-bold">Already have an account? <router-link to="/login">Login</router-link> </small>
@@ -52,6 +57,7 @@
 </template>
 
 <script>
+    import axios from 'axios'
 export default {
     data(){
         return{
@@ -62,11 +68,13 @@ export default {
                 bvn: '',
                 phone: '',
                 password: ''
-            }
+            },
+            loading: false
         }
     },
     methods:{
        async register(){
+           this.loading = true
             let formData = new FormData()
             formData.append("name", this.credentials.name)
             formData.append("username", this.credentials.username)
@@ -75,11 +83,32 @@ export default {
             formData.append("password", this.credentials.password)
             formData.append("bvn", this.credentials.bvn)
            try {
-               let res = await this.$axios.post('/auth/register', formData)
+               let res = await axios.post('https://api.tradaxs.com/api/auth/register', formData, {
+                   headers:{
+                       'Authorization': 'Bearer 1|WnM7JDwUoOuM3BoCqrDfErQZrw58haoDUvuePhgK'
+                   }
+               })
                console.log(res);
+                this.$toastify({
+                    text: "User Registered",
+                    className: "info",
+                    style: {
+                        background: "green",
+                    }
+                }).showToast();
+                this.$router.push('/login')
            } catch (error) {
                console.log(error);
+               this.$toastify({
+                    text: "Something went wrong",
+                    className: "info",
+                    style: {
+                        background: "red",
+                    }
+                }).showToast();
            }
+           this.loading = false
+           this.credentials = {}
        }
     }
 }

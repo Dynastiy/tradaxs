@@ -1,17 +1,61 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
+// import Axios from 'axios';
+import createPersistedState from 'vuex-persistedstate';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
+
+const getDefaultState = () => {
+    return {
+        token: false,
+        user: {},
+        cart: [],
+    };
+};
 
 export default new Vuex.Store({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
-})
+    strict: true,
+    plugins: [createPersistedState()],
+    state: getDefaultState(),
+    getters: {
+      isAuthenticated: state => {
+            return state.token;
+            
+        },
+        getUser: state => {
+            return state.user;
+        },
+        getCartItems: state =>{
+            return state.cart
+        }
+    },
+    mutations: {
+        SET_TOKEN: (state, token) => {
+            state.token = token;
+        },
+        SET_USER: (state, user) => {
+            state.user = user;
+        },
+        SET_CART: (state, cart) => {
+            state.cart = cart;
+        },
+        RESET: state => {
+            Object.assign(state, getDefaultState());
+        }
+    },
+    actions: {
+        login: ({ commit }, { token, user }) => {
+            commit('SET_TOKEN', token);
+            commit('SET_USER', user);
+
+            // set auth header
+            // Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        },
+        addCart: ({ commit }, { payload }) => {
+            commit('SET_CART', payload);
+        },
+        logout: ({ commit }) => {
+            commit('RESET', '');
+        }
+    }
+});
