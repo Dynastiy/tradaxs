@@ -6,10 +6,22 @@
                     <img src="@/assets/img/logo.svg" width="45" alt="" srcset="">
             </div>
             <ul class="list-unstyled">
-                <li v-for="(item, index) in menu" :key="index">
-                    <router-link :to="item.url"> 
-                        <Icon :icon="item.icon" class="mr-2 menu--icon" />  
-                        <span> {{ item.menu_item }} </span>
+                <li>
+                    <router-link to="/"> 
+                        <Icon icon="healthicons:ui-user-profile" class="mr-2 menu--icon" />  
+                        <span> User Profile </span>
+                    </router-link>
+                    <router-link to="/"> 
+                        <Icon icon="heroicons-solid:academic-cap" class="mr-2 menu--icon" />  
+                        <span> Training </span>
+                    </router-link>
+                    <router-link to="/"> 
+                        <Icon icon="ant-design:swap-outlined" class="mr-2 menu--icon" />  
+                        <span> Crypto Swap </span>
+                    </router-link>
+                    <router-link to="/"> 
+                        <Icon icon="carbon:id-management" class="mr-2 menu--icon" />  
+                        <span> Account Mgt </span>
                     </router-link>
                 </li>
             </ul>
@@ -24,14 +36,12 @@
 
 <script>
 import { Icon } from "@iconify/vue2";
-import menu from '@/api/menu'
 export default {
      components: {
     Icon,
   },
     data(){
         return {
-            menu: menu
         }
     }
 }

@@ -143,13 +143,13 @@
 .table th {
     border-top: none;
     border-bottom: none;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     vertical-align: middle;
 }
 
 .table td {
     font-weight: 500;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     vertical-align: middle;
     border-bottom: 1px solid var(--gray-600);
     color: #4C506B;
@@ -206,4 +206,15 @@
 }
 .dashboard--mobile {
     display: none;
+}
+.view--more {
+    background-color: var(--main-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 3px;
+    color: #fff;
+    border: 1px solid var(--main-color);
+}
+.view--more:hover {
+    background-color: #fff;
+    color: var(--main-color);
 }

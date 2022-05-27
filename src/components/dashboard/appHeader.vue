@@ -43,8 +43,19 @@ export default {
 // }
 methods:{
     async logout(){
+        let accessToken = this.$store.getters.isAuthenticated
+        console.log(accessToken);
        try {
-            let res = await this.$axios.get('/auth/logout')
+            let res = await this.$axios.post('/auth/logout', accessToken);
+            this.$store.dispatch('logout');
+            this.$toastify({
+                    text: "Logout Successful ",
+                    className: "info",
+                    style: {
+                        background: "green",
+                    }
+                }).showToast();
+            this.$router.push('/login')
         console.log(res);
        } catch (error) {
            console.log(error);

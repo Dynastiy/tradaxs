@@ -7,9 +7,10 @@ Vue.use(Vuex);
 
 const getDefaultState = () => {
     return {
-        token: false,
+        token: '',
         user: {},
         cart: [],
+        wallet:[],
     };
 };
 
@@ -20,13 +21,12 @@ export default new Vuex.Store({
     getters: {
       isAuthenticated: state => {
             return state.token;
-            
         },
         getUser: state => {
             return state.user;
         },
-        getCartItems: state =>{
-            return state.cart
+        getWallets: state =>{
+            return state.wallet
         }
     },
     mutations: {
@@ -39,14 +39,18 @@ export default new Vuex.Store({
         SET_CART: (state, cart) => {
             state.cart = cart;
         },
+        SET_WALLET: (state, wallet) => {
+            state.wallet = wallet;
+        },
         RESET: state => {
             Object.assign(state, getDefaultState());
         }
     },
     actions: {
-        login: ({ commit }, { token, user }) => {
+        login: ({ commit }, { token, user, wallet}) => {
             commit('SET_TOKEN', token);
             commit('SET_USER', user);
+            commit('SET_WALLET', wallet);
 
             // set auth header
             // Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;

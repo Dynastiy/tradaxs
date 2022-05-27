@@ -7,107 +7,21 @@
                         <table class="table table-centered table-nowrap mb-0">
                         <thead>
                             <tr>
+                            <th scope="col">Id</th>
                             <th scope="col">Name</th>
-                            <th scope="col">MarketCap</th>
-                            <th scope="col">Balance</th>
-                            <th scope="col">Price</th>
+                            <th scope="col">Actions</th>
+                            <!-- <th scope="col">Price</th>
                             <th scope="col">7D</th>
                             <th scope="col">30D</th>
                             <th scope="col">1Y</th>
-                            <th scope="col">Today</th>
+                            <th scope="col">Today</th> -->
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <td class=" align-items-center" style="gap:5px">
-                                <span><img src="https://digitalchamber.org/wp-content/uploads/2018/02/Bitcoin-icon.png" class="mr-1" width="18" alt="" srcset=""></span>
-                                <span>Bitcoin</span>
-                                </td>
-                            <td>208</td>
-                            <td>$5,777</td>
-                            <td>0.000038</td>
-                            <td class="text-success">+5.1%</td>
-                            <td class="text-danger">-21.4%</td>
-                            <td>+1M%</td>
-                            <td class="text-success">+7.7%</td>
-                            </tr>
-                            <tr>
-                            <td class=" align-items-center" style="gap:5px">
-                                <span><img src="https://digitalchamber.org/wp-content/uploads/2018/02/Bitcoin-icon.png" class="mr-1" width="18" alt="" srcset=""></span>
-                                <span>Bitcoin</span>
-                                </td>
-                            <td>208</td>
-                            <td>$5,777</td>
-                            <td>0.000038</td>
-                            <td class="text-success">+5.1%</td>
-                            <td class="text-danger">-21.4%</td>
-                            <td>+1M%</td>
-                            <td class="text-success">+7.7%</td>
-                            </tr>
-                            <tr>
-                            <td class=" align-items-center" style="gap:5px">
-                                <span><img src="https://digitalchamber.org/wp-content/uploads/2018/02/Bitcoin-icon.png" class="mr-1" width="18" alt="" srcset=""></span>
-                                <span>Bitcoin</span>
-                                </td>
-                            <td>208</td>
-                            <td>$5,777</td>
-                            <td>0.000038</td>
-                            <td class="text-success">+5.1%</td>
-                            <td class="text-danger">-21.4%</td>
-                            <td>+1M%</td>
-                            <td class="text-success">+7.7%</td>
-                            </tr>
-                            <tr>
-                            <td class=" align-items-center" style="gap:5px">
-                                <span><img src="https://digitalchamber.org/wp-content/uploads/2018/02/Bitcoin-icon.png" class="mr-1" width="18" alt="" srcset=""></span>
-                                <span>Bitcoin</span>
-                                </td>
-                            <td>208</td>
-                            <td>$5,777</td>
-                            <td>0.000038</td>
-                            <td class="text-success">+5.1%</td>
-                            <td class="text-danger">-21.4%</td>
-                            <td>+1M%</td>
-                            <td class="text-success">+7.7%</td>
-                            </tr>
-                            <tr>
-                            <td class=" align-items-center" style="gap:5px">
-                                <span><img src="https://digitalchamber.org/wp-content/uploads/2018/02/Bitcoin-icon.png" class="mr-1" width="18" alt="" srcset=""></span>
-                                <span>Bitcoin</span>
-                                </td>
-                            <td>208</td>
-                            <td>$5,777</td>
-                            <td>0.000038</td>
-                            <td class="text-success">+5.1%</td>
-                            <td class="text-danger">-21.4%</td>
-                            <td>+1M%</td>
-                            <td class="text-success">+7.7%</td>
-                            </tr>
-                            <tr>
-                            <td class=" align-items-center" style="gap:5px">
-                                <span><img src="https://digitalchamber.org/wp-content/uploads/2018/02/Bitcoin-icon.png" class="mr-1" width="18" alt="" srcset=""></span>
-                                <span>Bitcoin</span>
-                                </td>
-                            <td>208</td>
-                            <td>$5,777</td>
-                            <td>0.000038</td>
-                            <td class="text-success">+5.1%</td>
-                            <td class="text-danger">-21.4%</td>
-                            <td>+1M%</td>
-                            <td class="text-success">+7.7%</td>
-                            </tr>
-                            <tr>
-                            <td class=" align-items-center" style="gap:5px">
-                                <span><img src="https://digitalchamber.org/wp-content/uploads/2018/02/Bitcoin-icon.png" class="mr-1" width="18" alt="" srcset=""></span>
-                                <span>Bitcoin</span>
-                                </td>
-                            <td>208</td>
-                            <td>$5,777</td>
-                            <td>0.000038</td>
-                            <td class="text-success">+5.1%</td>
-                            <td class="text-danger">-21.4%</td>
-                            <td>+1M%</td>
-                            <td class="text-success">+7.7%</td>
+                            <tr v-for="asset in assets" :key="asset.id">
+                            <td>{{asset.id }} </td>
+                            <td> {{ asset.asset_name }} </td>
+                            <td> <button class="view--more" @click="viewMore(asset)">View More</button> </td>
                             </tr>
                             
                         </tbody>
@@ -206,3 +120,45 @@
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    data(){
+        return{
+            assets:[]
+        }
+    },
+    methods: {
+        getAssets(){
+            this.$axios.get('allAssets')
+            .then((res)=>{
+                console.log(res.data.data);
+                this.assets = res.data.data
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+            
+        },
+        viewMore(asset){
+            let payload = {
+                coin_type: asset.asset_name,
+                userId: this.$store.getters.getUser[0].id
+            }
+            this.$axios.post('/create_wallet', payload)
+            .then((res)=>{
+                console.log(res);
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+            .finally(()=>{
+                this.$router.push({name: "wallet-details", params:{id: asset.id } })
+            })
+        }
+    },
+    mounted(){
+        this.getAssets()
+    }
+}
+</script>

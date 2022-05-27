@@ -64,16 +64,14 @@ export default {
             formData.append("password", this.credentials.password)
            try {
                let res = await this.$axios.post('auth/login', formData
-            //    , {
-            //        headers:{
-            //            'Authorization': 'Bearer 1|WnM7JDwUoOuM3BoCqrDfErQZrw58haoDUvuePhgK'
-            //        }
-            //    }
                )
                console.log(res);
-               let token = true;
+               let token = res.data.accessToken;
+               console.log(token);
                let user = res.data.user[0]
-               this.$store.dispatch("login", {token, user})
+               let wallet = res.data.user[1]
+               console.log(wallet);
+               this.$store.dispatch("login", {token, user, wallet})
                 this.$toastify({
                     text: "Logged In ",
                     className: "info",
@@ -98,7 +96,7 @@ export default {
        }
     },
     async created(){
-        if(this.$store.getters.isAuthenticated === true ){
+        if(this.$store.getters.isAuthenticated){
             this.$router.push('/user')
         }
     }

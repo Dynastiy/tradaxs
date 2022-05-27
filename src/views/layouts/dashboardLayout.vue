@@ -20,7 +20,7 @@ export default {
         AppHeader, AppDrawer, MobileHeader
     },
     async created(){
-        if(this.$store.getters.isAuthenticated === false ){
+        if(!this.$store.getters.isAuthenticated){
             this.$router.push('/login')
         }
         console.log(this.$store.getters.getUser);
