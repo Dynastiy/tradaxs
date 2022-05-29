@@ -72,9 +72,7 @@ export default {
         methods:{
             getWallet(){
                 let payload = JSON.stringify({walletId: this.id})
-                this.$axios.get(`myWallets`, {
-                    data: payload
-                })
+                this.$axios.get(`myWallets/` + payload)
                 .then((res)=>{
                     console.log(res);
                 })
