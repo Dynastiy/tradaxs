@@ -71,10 +71,13 @@ export default {
         },
         methods:{
             getWallet(){
-                let payload = JSON.stringify({walletId: this.id})
+                let payload = JSON.stringify({"coin_type": this.id})
                 this.$axios.get(`myWallets/` + payload)
                 .then((res)=>{
                     console.log(res);
+                })
+                .catch((err)=>{
+                    console.log(err);
                 })
             }
         },

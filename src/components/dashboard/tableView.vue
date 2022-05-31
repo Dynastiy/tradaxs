@@ -94,7 +94,7 @@
                            </div>
                        </div>
 
- <div class="d-flex align-items-center justify-content-between mb-4">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
                            <div style="border: 1px solid var(--gray-400); border-radius:50%" class="p-2">
                                <span ><img src="@/assets/img/chainlink.png" class="" width="30" alt="" srcset=""></span>
                            </div>
@@ -145,6 +145,7 @@ export default {
                 coin_type: asset.asset_name,
                 userId: this.$store.getters.getUser[0].id
             }
+            console.log(payload);
             this.$axios.post('/create_wallet', payload)
             .then((res)=>{
                 console.log(res);
@@ -153,7 +154,7 @@ export default {
                 console.log(err);
             })
             .finally(()=>{
-                this.$router.push({name: "wallet-details", params:{id: asset.id } })
+                this.$router.push({name: "wallet-details", params:{id: asset.coin_type } })
             })
         }
     },
