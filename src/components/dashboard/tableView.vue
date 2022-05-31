@@ -1,34 +1,23 @@
 <template>
     <div>
         <div>
-            <div class="table--view">
-                <div class=" other--tables">
-                    <div class="table-responsive">
-                        <table class="table table-centered table-nowrap mb-0">
-                        <thead>
-                            <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Actions</th>
-                            <!-- <th scope="col">Price</th>
-                            <th scope="col">7D</th>
-                            <th scope="col">30D</th>
-                            <th scope="col">1Y</th>
-                            <th scope="col">Today</th> -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="asset in assets" :key="asset.id">
-                            <td>{{asset.id }} </td>
-                            <td> {{ asset.asset_name }} </td>
-                            <td> <button class="view--more" @click="viewMore(asset)">View More</button> </td>
-                            </tr>
-                            
-                        </tbody>
-                        </table>
+            <div class="container">
+        <div class="row">
+            <div class="col-md-8" v-for="asset in assets" :key="asset.id">
+                    <!-- <img class="card-img-top" :src="cardinfo.image" alt="" width="100%"> -->
+                    <div class="card m-1 px-2" style="height:50px; border-radius:10px;">
+                        <div class="card-title ml-1"  ><a @click.once="viewMore(asset)">{{ asset.asset_name }}</a></div>
+                        <div class="px-1 d-flex justify-content-between">
+                                    <span style="font-size:12px;">$<strong>0.00</strong></span>
+                                    <strong class=" justify-content-end text-success " style="font-size:12px;">$<span id="btc-usd">0.00</span></strong>
+                        </div>
                     </div>
-                </div>
+
+
             </div>
+        </div>
+    </div>
+            
              <!-- Mobile Table  -->
                <div class="mobile--table">
                    <div class="table--header d-flex align-items-center justify-content-between mb-4">
