@@ -5,11 +5,11 @@
         <div class="row">
             <div class="col-md-8" v-for="asset in assets" :key="asset.id">
                     <!-- <img class="card-img-top" :src="cardinfo.image" alt="" width="100%"> -->
-                    <div class="card m-1 px-2" style="height:50px; border-radius:10px;">
-                        <div class="card-title ml-1"  ><a @click.once="viewMore(asset)">{{ asset.asset_name }}</a></div>
+                    <div class="card m-1 px-2 " style="height:50px; border-radius:10px;">
+                        <div class="card-title ml-1"  ><a role="button" @click.once="viewMore(asset)">{{ asset.asset_name }}</a></div>
                         <div class="px-1 d-flex justify-content-between">
-                                    <span style="font-size:12px;">$<strong>0.00</strong></span>
-                                    <strong class=" justify-content-end text-success " style="font-size:12px;">$<span id="btc-usd">0.00</span></strong>
+                            <span style="font-size:12px;">$<strong>0.00</strong></span>
+                            <strong class=" justify-content-end text-success " style="font-size:12px;">$<span id="btc-usd">0.00</span></strong>
                         </div>
                     </div>
 
@@ -64,7 +64,7 @@
                            </div>
                        </div>
 
- <div class="d-flex align-items-center justify-content-between mb-4">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
                            <div style="border: 1px solid var(--gray-400); border-radius:50%" class="p-2">
                                <span ><img src="https://cryptologos.cc/logos/litecoin-ltc-logo.png" class="" width="30"  alt="" srcset=""></span>
                            </div>
@@ -114,7 +114,9 @@
 export default {
     data(){
         return{
-            assets:[]
+            assets:[],
+            route_id: '',
+            selected_coin: ''
         }
     },
     methods: {
@@ -134,21 +136,44 @@ export default {
                 coin_type: asset.asset_name,
                 userId: this.$store.getters.getUser[0].id
             }
+            this.selected_coin = asset.asset_name,
             console.log(payload);
             this.$axios.post('/create_wallet', payload)
             .then((res)=>{
                 console.log(res);
+                this.checkWallet()
             })
             .catch((err)=>{
                 console.log(err);
+                this.checkWallet()
             })
             .finally(()=>{
-                this.$router.push({name: "wallet-details", params:{id: asset.coin_type } })
+                this.$router.push({name: "wallet-details", params:{id: this.route_id } })
             })
+        },
+        checkWallet(){
+            // const data = "BTC";
+                const obj = 
+                this.$store.getters.getWallets
+                
+                const greaterThanTen = obj.find(element => element.wallet.coin_type == this.selected_coin);
+                // for (let [key, value] of Object.entries(obj)) {
+                //     if(data === value )
+                //     {
+                //     console.log(key, value);
+                //     }
+                //     else{
+                //         console.log("Not Found");
+                //     }
+                // }
+                this.route_id = greaterThanTen.wallet.id
+                console.log(greaterThanTen.wallet.id);
+
         }
     },
     mounted(){
         this.getAssets()
+        console.log(this.$store.getters.getWallets);
     }
 }
 </script>

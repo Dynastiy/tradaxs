@@ -1,139 +1,125 @@
 <template>
     <div>
-       <div class="profilePage">
-            <div class="">
-            <div class="wallet--container">
-            <div class="top stocks">
-           <div class="">
-               <Wallet/>
-           </div>
-           <div class="top--right stocks">
-               <div class="asset--box bg-white shadow-sm p-3">
-                    <h6 class="small font-weight-bold" >Market Cap</h6>
-                    
-                   <div class="d-flex align-items-center mt-3 justify-content-between">
-                       <div>
-                            <h6 class="font-weight-bold">$12,418.42</h6>
-                        </div>
-                        <div>
-                            <img src="@/assets/img/rising.png" width="50" alt="">
-                            <p style="color:#35DC94; font-size:0.6rem" class="small text-center">+10% <span><IconComponent icon="bi:arrow-up" /></span></p>
-                        </div>
-                   </div>
-               </div>
-           </div>
-        </div>
-        </div>
-
-        <div class="mt-5">
             
-               <div class="amount--box bg-white shadow-sm p-3">
-                   <h6 class="small font-weight-bold" >Fully Diluted</h6>
-                   <div class="d-flex align-items-center mt-3 justify-content-between">
-                       <div>
-                            <h6 class="font-weight-bold">$12,418.42</h6>
-                        </div>
-                        <div>
-                            <img src="@/assets/img/falling.png" width="50" alt="">
-                            <p style="color:#DC3535; font-size:0.6rem" class="small text-center">+10% <span><IconComponent icon="bi:arrow-down" /></span></p>
-                        </div>
-                   </div>
-               </div>
-
-               <div class="payment--box bg-white shadow-sm p-3">
-                   <h6 class="small font-weight-bold" >Circulating Supply</h6>
-                  <div class="d-flex align-items-center mt-3 justify-content-between">
-                       <div>
-                            <h6 class="font-weight-bold">$8,619.23</h6>
-                        </div>
-                        <div>
-                            <h6 class="font-weight-bold">ETH</h6>
-                        </div>
-                   </div>
-               </div>
-        </div>
-
-        <!-- other Content -->
-
-        <section>
-            <div class="bottom">
-                <div class="table">
-                    <Table/> 
-                </div>
-                <div class="asset--box shadow-sm bg-white shadow-sm p-3 d-flex">
-                    <div class="d-flex flex-column justify-content-around">
-                        <h6 class="small">You have reached 70% of your daily deposit of $10,000</h6>
-                        <span role="button" class="small font-weight-bold" style="color:var(--main-color)">Expand Limit</span>
-                    </div>
-                    <div id="chart"></div>
-                </div>
-                <div class="asset--box2">
-                    <div>
-                        <div class="img--top shadow-sm">
-                            <img src="@/assets/img/image1.png" width="100%" alt="" srcset="">
-                        </div>
-                        <div class="bg-white pt-2 pl-2 shadow-sm" style="border-radius:0 0 10px 10px">
-                            <h6 class="small text-dark font-weight-bold">This week in Crypto</h6>
-                            <p class="small text-secondary" style="font-size:0.7rem">Dec. 23, 2021</p>
-                            <p class="small mt-1 text-muted" style="font-size:0.7rem">Bitcoin is up 5% , Etherum is up 12% , El salvador buy the “deep” and more...</p>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <span role="button" class="small font-weight-bold" style="font-size:0.6rem">Show All News</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-            </div>
-            <div class="bg-white">
-                Profile
-            </div>
-       </div>
+    <section class="">
+		<div class="">
+			<h1 class="mb-3">Account Settings</h1>
+			<div class="bg-white shadow rounded-lg d-block d-sm-flex">
+				<div class="profile-tab-nav border-right">
+					<div class="p-4">
+						<div class="img-circle text-center mb-3">
+							<!-- <v-else :class="getUser.first_name.charAt(0)"> {{ getUser.first_name.charAt(0) }} </span> -->
+						</div>
+						<h5 class="text-center">{{ userData.name }}</h5>
+                       
+					</div>
+					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+						<a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
+							<i class="fa fa-home text-center mr-1"></i> 
+							Profile
+						</a>
+						<a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab" aria-controls="password" aria-selected="false">
+							<i class="fa fa-key text-center mr-1"></i> 
+							Change Password
+						</a>
+					</div>
+				</div>
+				<div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+					<div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+						<h3 class="mb-4">Account Settings</h3>
+						<div class="">
+							<div class="">
+								<div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" v-model="userData.name">
+								</div>
+							</div>
+							<div class="">
+								<div class="form-group">
+                                <label>Email</label>
+                                <input type="text" class="form-control" v-model="userData.email">
+								</div>
+							</div>
+							<div class="">
+								<div class="form-group">
+                                <label>Phone number</label>
+                                <input type="text" class="form-control" v-model="userData.phone">
+								</div>
+							</div>
+                            <div class="">
+								<div class="form-group">
+                                <label>Bvn</label>
+                                <input type="text" class="form-control" v-model="userData.bvn">
+								</div>
+							</div>
+                            <div class="">
+								<div class="form-group">
+                                <label>Address</label>
+                                <input type="text" class="form-control" v-model="userData.address">
+								</div>
+							</div>
+						</div>
+						<div class="text-right input--field">
+							<button class="btn--main">Update</button>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
+						<h3 class="mb-4">Change Password</h3>
+						<div class="">
+							<div class="">
+								<div class="form-group">
+								<label>Old password</label>
+								<input type="password" class="form-control" v-model="password">
+								</div>
+							</div>
+						</div>
+						<div class="">
+							<div class="">
+								<div class="form-group">
+								<label>New password</label>
+								<input type="password" class="form-control" v-model="password_confirmation">
+								</div>
+							</div>
+						</div>
+						<div class="text-right">
+							<button class="btn--main">Update</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
     </div>
 </template>
 
 
 <script>
-import ApexCharts from 'apexcharts'
-import Wallet from '@/components/dashboard/walletView.vue'
-import Table from '@/components/dashboard/tableView.vue'
+// import ApexCharts from 'apexcharts'
+// import Wallet from '@/components/dashboard/walletView.vue'
+// import Table from '@/components/dashboard/tableView.vue'
 export default {
     components:{
-        Wallet, Table,
+        // Wallet, Table,
         //   ApexCharts
         },
         data() {
          return {
-
+             userData: {
+                 
+             },
+             password: '',
+             password_confirmation: ''
          }
           
         },
+        methods:{
+            changePassword(){
+                
+            }
+        },
         mounted(){
-            var options = 
-           {
-                series: [70],
-            chart: {
-              height: 150,
-              type: 'radialBar',
-              style: {
-            fontSize: '12px',
-            colors: ['#fff'],
-          }
-            },
-            fill: {
-            colors: ['#1B3593', '#1B3593']
-            },
-            plotOptions: {
-              radialBar: {
-                hollow: {
-                  size: '60%',
-                }
-              },
-            },
-            labels: ['Limit'],
-           }
-            var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
+            this.userData = this.$store.getters.getUser[0];
+            console.log(this.getUser);
     },
 }
 </script>

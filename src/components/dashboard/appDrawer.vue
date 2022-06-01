@@ -7,7 +7,7 @@
             </div>
             <ul class="list-unstyled">
                 <li>
-                    <router-link to="/"> 
+                    <router-link to="/profile"> 
                         <Icon icon="healthicons:ui-user-profile" class="mr-2 menu--icon" />  
                         <span> User Profile </span>
                     </router-link>

@@ -11,6 +11,9 @@
                         <h5 class="font-weight-bold text-dark">Login to Dashboard</h5>
                         <p class="small p--text">Enter your details to Login</p>
                     </div>
+                    <div class="mb-3" v-if="errorMsg">
+                        <span class="error text-capitalize"> {{ errorMsg.error }}, {{ errorMsg.message }} </span>
+                    </div>
                     <div class="form--content">
                         <form action="">
                         <div class="mb-3">
@@ -53,7 +56,8 @@ export default {
                 email: '',
                 password: ''
             },
-            loading: false
+            loading: false,
+            errorMsg: '',
         }
     },
     methods:{
@@ -83,8 +87,9 @@ export default {
                 console.log(this.$store.getters.isAuthenticated);
            } catch (error) {
                console.log(error.response);
+               this.errorMsg = error.response.data
                this.$toastify({
-                    text: `${error.response.data.error}`,
+                    text: `Something Went Wrong, Try again`,
                     className: "info",
                     style: {
                         background: "red",

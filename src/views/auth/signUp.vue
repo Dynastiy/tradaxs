@@ -15,27 +15,23 @@
                         <form @submit.prevent="register">
                             <div class="mb-2">
                             <label class="mb-2" for="">FULL NAME</label>
-                            <input type="text" v-model="credentials.name">
+                            <input type="text" v-model="credentials.name" required>
                         </div>
                         <div class="mb-2">
                             <label class="mb-2" for="">USERNAME</label>
-                            <input type="text" v-model="credentials.username">
+                            <input type="text" v-model="credentials.username" required>
                         </div>
                         <div class="mb-2">
                             <label class="mb-2" for="">EMAIL</label>
-                            <input type="email" v-model="credentials.email">
-                        </div>
-                        <div class="mb-2">
-                            <label class="mb-2" for="">BVN</label>
-                            <input type="number" v-model="credentials.bvn">
+                            <input type="email" v-model="credentials.email" required>
                         </div>
                         <div class="mb-2">
                             <label class="mb-2" for="">PHONE NUMBER</label>
-                            <input type="number" v-model="credentials.phone">
+                            <input type="number" v-model="credentials.phone" required>
                         </div>
                          <div class="mb-3">
                             <label for="">PASSWORD</label>
-                            <input type="password" v-model="credentials.password">
+                            <input type="password" v-model="credentials.password" required>
                         </div>
                         <div class="mb-3">
                             <div class="d-flex justify-content-center" v-if="loading">
@@ -57,7 +53,7 @@
 </template>
 
 <script>
-    import axios from 'axios'
+    // import axios from 'axios'
 export default {
     data(){
         return{
@@ -81,12 +77,8 @@ export default {
             formData.append("email", this.credentials.email)
             formData.append("phone", this.credentials.phone)
             formData.append("password", this.credentials.password)
-            formData.append("bvn", this.credentials.bvn)
            try {
-               let res = await axios.post('https://api.tradaxs.com/api/auth/register', formData, {
-                   headers:{
-                       'Authorization': 'Bearer 1|WnM7JDwUoOuM3BoCqrDfErQZrw58haoDUvuePhgK'
-                   }
+               let res = await this.$axios.post('auth/register', formData, {
                })
                console.log(res);
                 this.$toastify({
