@@ -82,7 +82,7 @@ export default {
                })
                console.log(res);
                 this.$toastify({
-                    text: "User Registered",
+                    text: "Registration Successful",
                     className: "info",
                     style: {
                         background: "green",

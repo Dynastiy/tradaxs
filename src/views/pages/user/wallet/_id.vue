@@ -88,7 +88,9 @@ export default {
         },
         methods:{
             getWallet(){
-                this.$axios.get('myWallets/' + this.id )
+                this.$axios.post('userWallets/',{
+                    id: this.id
+                })
                 .then((res)=>{
                     console.log(res);
                     this.coin_details = res.data.data;
