@@ -153,19 +153,8 @@ export default {
         },
         checkWallet(){
             // const data = "BTC";
-                const obj = 
-                this.$store.getters.getWallets
-                
+                const obj = this.$store.getters.getWallets
                 const greaterThanTen = obj.find(element => element.wallet.coin_type == this.selected_coin);
-                // for (let [key, value] of Object.entries(obj)) {
-                //     if(data === value )
-                //     {
-                //     console.log(key, value);
-                //     }
-                //     else{
-                //         console.log("Not Found");
-                //     }
-                // }
                 this.route_id = greaterThanTen.wallet.id
                 console.log(greaterThanTen.wallet.id);
 
