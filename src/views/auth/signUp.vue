@@ -20,10 +20,12 @@
                         <div class="mb-2">
                             <label class="mb-2" for="">USERNAME</label>
                             <input type="text" v-model="credentials.username" required>
+                            <!-- <span class="text-danger small" v-for="error in errors.username" :key="error.id"> {{ error }} </span> -->
                         </div>
                         <div class="mb-2">
                             <label class="mb-2" for="">EMAIL</label>
                             <input type="email" v-model="credentials.email" required>
+                            <span class="text-danger small" v-for="error in errors.email" :key="error.id"> {{ error }} </span>
                         </div>
                         <div class="mb-2">
                             <label class="mb-2" for="">PHONE NUMBER</label>
@@ -32,6 +34,7 @@
                          <div class="mb-3">
                             <label for="">PASSWORD</label>
                             <input type="password" v-model="credentials.password" required>
+                            <span class="text-danger small" v-for="error in errors.password" :key="error.id"> {{ error }} </span>
                         </div>
                         <div class="mb-3">
                             <div class="d-flex justify-content-center" v-if="loading">
@@ -65,7 +68,8 @@ export default {
                 phone: '',
                 password: ''
             },
-            loading: false
+            loading: false,
+            errors: ''
         }
     },
     methods:{
@@ -98,6 +102,8 @@ export default {
                         background: "red",
                     }
                 }).showToast();
+                console.log(error.response.data.errors);
+                this.errors = error.response.data.errors
            }
            this.loading = false
            this.credentials = {}

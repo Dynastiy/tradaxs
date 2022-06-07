@@ -14,6 +14,9 @@
                     <div class="mb-3" v-if="errorMsg">
                         <span class="error text-capitalize"> {{ errorMsg.error }}, {{ errorMsg.message }} </span>
                     </div>
+                    <!-- <div>
+                        <button @click="resendVerification ">Resend</button>
+                    </div> -->
                     <div class="form--content">
                         <form action="">
                         <div class="mb-3">
@@ -72,6 +75,7 @@ export default {
                console.log(res);
                let token = res.data.accessToken;
                console.log(token);
+               console.log(res.data);
                let user = res.data.user[0]
                let wallet = res.data.user[1]
                console.log(wallet);

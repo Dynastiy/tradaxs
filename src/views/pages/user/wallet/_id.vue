@@ -87,18 +87,15 @@ export default {
          }
         },
         methods:{
-            getWallet(){
-                this.$axios.post('userWallets/',{
-                    id: this.id
-                })
-                .then((res)=>{
-                    console.log(res);
-                    this.coin_details = res.data.data;
-                    console.log(this.coin_details);
-                })
-                .catch((err)=>{
-                    console.log(err);
-                })
+            async getWallet(){
+                // POST request using fetch with async/await
+                    const requestOptions = {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: { "userId": "59", "coin_type": "BTC"}
+                    };
+                    const response = await this.$axios("userWallets", requestOptions);
+                    console.log(response);
             },
             sendTransaction(){
                 this.loading = true

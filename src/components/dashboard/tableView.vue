@@ -139,23 +139,26 @@ export default {
             console.log(payload);
             this.$axios.post('/create_wallet', payload)
             .then((res)=>{
-                console.log(res);
-                this.checkWallet()
+                console.log(res.data.wallet);
+                let wallet = res.data.wallet
+               this.$store.dispatch("login", {wallet})
+                // this.checkWallet()
             })
             .catch((err)=>{
                 console.log(err);
                 this.checkWallet()
             })
             .finally(()=>{
-                this.$router.push({name: "wallet-details", params:{id: this.route_id } })
+                this.$router.push(`/wallet/${this.route_id}`)
             })
         },
         checkWallet(){
             // const data = "BTC";
                 const obj = this.$store.getters.getWallets
+                console.log(obj);
                 const greaterThanTen = obj.find(element => element.wallet.coin_type == this.selected_coin);
-                this.route_id = greaterThanTen.wallet.id
-                console.log(greaterThanTen.wallet.id);
+                this.route_id = greaterThanTen.wallet.coin_type
+                console.log(greaterThanTen.wallet.coin_type);
 
         }
     },
