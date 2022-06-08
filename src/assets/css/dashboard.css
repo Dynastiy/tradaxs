@@ -16,7 +16,7 @@
 }
 #main {
     margin-left: 230px;
-    padding: 1rem;
+    padding: 2rem;
     background-color: #fcfcfc;
     min-height: 100vh;
 }
@@ -101,12 +101,16 @@
     font-size: 0.8rem;
     color: var(--gray-500);
 }
-.top--right input {
+.top--right input, .top--right select {
     width: 100%;
     border: 1px solid var(--gray-500);
     padding: 2px 5px;
     border-radius: 5px;
     outline: none;
+    color: var(--gray-700);
+}
+.top--right select option {
+    font-size: 1px;
 }
 .top--right input:focus{
     outline: 1px solid var(--gray-600);
@@ -141,8 +145,8 @@
 
   
 .table th {
-    border-top: none;
-    border-bottom: none;
+    /* border-top: none;
+    border-bottom: none; */
     font-size: 0.8rem;
     vertical-align: middle;
 }
@@ -151,7 +155,7 @@
     font-weight: 500;
     font-size: 0.8rem;
     vertical-align: middle;
-    border-bottom: 1px solid var(--gray-600);
+    /* border-bottom: 1px solid var(--gray-600); */
     color: #4C506B;
 }
 

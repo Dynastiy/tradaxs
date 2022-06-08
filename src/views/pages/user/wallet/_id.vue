@@ -19,8 +19,6 @@
                         <h5 class="text-white"> {{ coin_details.coin_type }} </h5>
                     </div>
                 </div>
-
-                
                 
                 </div>
 
@@ -83,7 +81,8 @@ export default {
              coin_details: {},
              addressTo: "",
              amount: "",
-             loading: false
+             loading: false,
+             checkedMail: []
          }
         },
         methods:{
@@ -92,10 +91,12 @@ export default {
                     const requestOptions = {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: { "userId": "59", "coin_type": "BTC"}
+                        data: { "userId": this.$store.getters.getUser[0].id, "coin_type": this.$route.params.id}
                     };
                     const response = await this.$axios("userWallets", requestOptions);
                     console.log(response);
+                    this.coin_details = response.data.data
+                    console.log(requestOptions.data);
             },
             sendTransaction(){
                 this.loading = true
@@ -121,7 +122,6 @@ export default {
         },
         mounted() {
            this.getWallet();
-           
         },
 }
 </script>

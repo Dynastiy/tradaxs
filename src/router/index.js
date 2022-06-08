@@ -59,6 +59,22 @@ const routes = [
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "about" */ '../views/pages/user/wallet/_id.vue')
       },
+      {
+        path: '/cypto-swap',
+        name: 'cypto-swap',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "about" */ '../views/pages/user/cryptoSwap.vue')
+      },
+      {
+        path: '/peer-2-peer',
+        name: 'peer-2-peer',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "about" */ '../views/pages/user/peer2Peer.vue')
+      },
     ]
   }, 
   {

@@ -7,21 +7,29 @@
             </div>
             <ul class="list-unstyled">
                 <li>
+                    <router-link to="/user"> 
+                        <Icon icon="carbon:dashboard" class="mr-2 menu--icon" />  
+                        <span> Dashboard </span>
+                    </router-link>
                     <router-link to="/profile"> 
                         <Icon icon="healthicons:ui-user-profile" class="mr-2 menu--icon" />  
                         <span> User Profile </span>
                     </router-link>
-                    <router-link to="/"> 
+                    <!-- <router-link to="/"> 
                         <Icon icon="heroicons-solid:academic-cap" class="mr-2 menu--icon" />  
                         <span> Training </span>
-                    </router-link>
-                    <router-link to="/"> 
+                    </router-link> -->
+                    <router-link to="/cypto-swap"> 
                         <Icon icon="ant-design:swap-outlined" class="mr-2 menu--icon" />  
                         <span> Crypto Swap </span>
                     </router-link>
-                    <router-link to="/"> 
+                    <!-- <router-link to="/"> 
                         <Icon icon="carbon:id-management" class="mr-2 menu--icon" />  
                         <span> Account Mgt </span>
+                    </router-link> -->
+                    <router-link to="/peer-2-peer"> 
+                        <Icon icon="fa-solid:people-arrows" class="mr-2 menu--icon" />  
+                        <span> P2P </span>
                     </router-link>
                 </li>
             </ul>

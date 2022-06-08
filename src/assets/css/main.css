@@ -5,7 +5,7 @@ body {
 }
 
 body.active {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(0, 0, 0, 0.9) !important;
     z-index: 999;
 }
 
@@ -130,7 +130,7 @@ body.active {
 .input--field {
     background-color: var(--gray-200)
 }
-.input--field input {
+.input--field input, .input--field select {
     background-color: transparent;
     display: block;
     width: 100%;
@@ -138,13 +138,16 @@ body.active {
     border-radius: 5px;
     padding: 0.6rem 1rem;
 }
+.input--field select option {
+    font-size: 12px;
+}
 .input--field input:focus{
     outline: none;
 }
 .input--field input::placeholder {
     font-size: 0.8rem;
 }
-.input--field button {
+.input--field .main--btn {
     display: block;
     width: 100%;
     padding: 0.7rem 0;
@@ -310,6 +313,24 @@ body.active {
 	border: 5px solid #fff;
     margin: 0 auto;
 }
+.img-circle2 img {
+	height: 100px;
+	width: 100px;
+	border-radius: 100%;
+	border: 5px solid #fff;
+}
+.img-circle2 span {
+	height: 40px;
+	width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* font-size: 4rem; */
+	border-radius: 100%;
+	border: 2px solid #fff;
+    margin: 0 auto;
+}
+
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
     background-color: var(--secondary-color);
 }

@@ -14,7 +14,7 @@
 <script>
 import AppDrawer from '@/components/dashboard/appDrawer.vue'
 import AppHeader from '@/components/dashboard/appHeader.vue'
-import MobileHeader from '@/components/static/appHeader'
+import MobileHeader from '@/components/dashboard/dashboardMobile.vue'
 export default {
     components:{
         AppHeader, AppDrawer, MobileHeader

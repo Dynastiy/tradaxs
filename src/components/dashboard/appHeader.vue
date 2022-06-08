@@ -9,8 +9,8 @@
                <router-link to="/stocks" class="font-weight-bold small" style="color: var(--gray-400)">Stocks</router-link>
            </div>
 
-            <div class="right--side">
-                
+            <div class="right--side d-flex align-items-center" style="gap:20px">
+                <h5 class="small" v-if="getUser">Hello, {{ getUser[0].username }} </h5>
                 <!-- <div class="rounded-circle d-flex align-items-center justify-content-center" style="background-color: #E1E5F8; width:30px; height:30px">
                      <IconComponent icon="bx:user" />
                 </div> -->
@@ -61,12 +61,11 @@ methods:{
            console.log(error);
        }
     },
-    goToAssets(){
-
-    },
-    goToStocks(){
-
+},
+computed:{
+        getUser(){
+            return this.$store.getters.getUser;
+        }
     }
-}
 }
 </script>

@@ -36,8 +36,8 @@ export default new Vuex.Store({
         SET_USER: (state, user) => {
             state.user = user;
         },
-        SET_CART: (state, cart) => {
-            state.cart = cart;
+        UPDATE_WALLET: (state, newWallet) => {
+            state.wallet.push(newWallet);
         },
         SET_WALLET: (state, wallet) => {
             state.wallet = wallet;
@@ -55,8 +55,8 @@ export default new Vuex.Store({
             // set auth header
             // Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         },
-        addCart: ({ commit }, { payload }) => {
-            commit('SET_CART', payload);
+        updateWallet: ({ commit }, { newWallet }) => {
+                commit('UPDATE_WALLET', newWallet);
         },
         logout: ({ commit }) => {
             commit('RESET', '');
