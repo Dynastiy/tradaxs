@@ -10,7 +10,7 @@
               <div class="mt-4">
                   <div class="input--field d-flex align-items-center">
                       <input type="search" class="" placeholder="Email Address">
-                      <button>Get Started</button>
+                      <button class="main--button">Get Started</button>
                   </div>
               </div>
             </div>
