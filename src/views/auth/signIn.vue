@@ -70,7 +70,7 @@ export default {
             formData.append("email", this.credentials.email)
             formData.append("password", this.credentials.password)
            try {
-               let res = await this.$axios.post('auth/login', formData
+               let res = await this.$http.post('auth/login', formData
                )
                console.log(res);
                let token = res.data.accessToken;
@@ -78,8 +78,10 @@ export default {
                console.log(res.data);
                let user = res.data.user[0]
                let wallet = res.data.user[1]
+               let loggedIn = true
                console.log(wallet);
-               this.$store.dispatch("login", {token, user, wallet})
+               console.log(loggedIn);
+               this.$store.dispatch("login", {token, user, wallet, loggedIn})
                 this.$toastify({
                     text: "Logged In ",
                     className: "info",
@@ -105,7 +107,7 @@ export default {
        }
     },
     async created(){
-        if(this.$store.getters.isAuthenticated){
+        if(!this.$store.getters.loggedIn){
             this.$router.push('/user')
         }
     }

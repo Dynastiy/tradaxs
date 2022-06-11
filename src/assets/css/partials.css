@@ -3,11 +3,19 @@
 @import url("@/assets/css/bootstrap.min.css");
 @import url("@/assets/css/auth.css");
 @import url("@/assets/css/dashboard.css");
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); */
+
+
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap');
 
 /* Font */
 
+
 /* @import url('@/assets/font/stylesheet.css'); */
+
 *,
 html {
     padding: 0;
@@ -41,7 +49,7 @@ html {
 }
 
 :root {
-    --primary-font-family: 'Poppins', sans-serif;
+    --primary-font-family: 'Work Sans', sans-serif;
     /* --primary-font-family: GT Walsheim Pro, Helvetica Neue, Helvetica, Arial, Microsoft YaHei, Tahoma, sans-serif !important; */
     /* Brand Colors  */
     --main-color: #1B3593;
@@ -79,6 +87,7 @@ label {
 body {
     background-color: var(--accent-color);
 }
+
 
 /* body.active {
     background-color: rgba(0, 0, 0, 0.7);

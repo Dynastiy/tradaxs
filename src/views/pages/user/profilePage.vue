@@ -60,7 +60,7 @@
               <div class="">
                 <div class="">
                   <div class="form-group">
-                    <label>Last Name</label>
+                    <label>Name</label>
                     <input
                       type="text"
                       class="form-control"
@@ -110,7 +110,12 @@
                 </div>
               </div>
               <div class="text-right input--field">
-                <button class="main--button">Update</button>
+                <div class="d-flex justify-content-center" v-if="loading">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                <button v-else class="main--button" @click.once="updateUser">Update</button>
               </div>
             </div>
             <div
@@ -169,10 +174,19 @@ export default {
   components: {},
   data() {
     return {
-      userData: {},
+      userData: {
+        //  "userId":"2",
+        "name": "",
+        "email": "",
+        "bvn": "",
+        "phone": "",
+        "address": "",
+        "username": "",
+      },
       email: "",
       password: "",
       password_confirmation: "",
+      loading: false,
     };
   },
   methods: {
@@ -191,21 +205,62 @@ export default {
           console.log(res);
         });
     },
+    updateUser(){
+      this.loading = true
+      const formData = new FormData;
+      formData.append('name', this.userData.name)
+      formData.append('email', this.userData.email)
+      formData.append('bvn', this.userData.bvn)
+      formData.append('phone', this.userData.phone)
+      formData.append('address', this.userData.address)
+      formData.append('username', this.userData.username)
+      this.$axios.post('users/update', formData)
+      .then((res)=>{
+        this.$toastify({
+                    text: `User Details Update succesful`,
+            className: "info",
+            style: {
+                background: "green",
+            }
+        }).showToast();
+        return res
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+      .finally(()=>{
+      this.getUser()
+      this.loading = false
+    })
+    },
 	applyAsMerchant(){
-		let payload = {
-			userId: this.$store.getters.getUser[0].id
-		}
-		this.$axios.post('merchant_request', payload)
+		// let payload = {
+		// 	userId: this.$store.getters.getUser[0].id
+		// }
+		this.$axios.post('merchant_request')
 		.then((res)=>{
 			console.log(res);
 		})
 		.catch((err)=>{
 			console.log(err);
 		})
-	}
+    
+	},
+  getUser(){
+    this.$axios.get('/usersDetails')
+    .then((res)=>{
+      console.log(res);
+      this.userData = res.data.user_details.profile
+      console.log(res.data.user_details.profile)
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  }
   },
   mounted() {
-    this.userData = this.$store.getters.getUser[0];
+    this.getUser()
+    // this.userData = this.$store.getters.getUser[0];
     console.log(this.userData);
   },
 };

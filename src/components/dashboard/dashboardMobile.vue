@@ -80,12 +80,19 @@ export default {
         },
          register(){
             this.$router.push('/register')
-        }
+        },
+        getUser(){
+            this.$axios.get('/usersDetails')
+            .then((res)=>{
+            this.userData = res.data.user_details.profile
+            })
+            .catch((err)=>{
+            console.log(err);
+            })
+  }
     } ,
      mounted(){
-
-
-    this.userData = this.$store.getters.getUser[0];
+         this.getUser()
         const toggller = document.getElementById("toggled");
         const sidee = document.getElementById('side-bar2');
         // const closeMenu = document.getElementById('close-menu');

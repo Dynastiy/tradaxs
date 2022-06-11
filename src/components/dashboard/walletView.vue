@@ -3,7 +3,13 @@
         <div class="wallet">
             <div class="left--wallet">
                 <div>
-                    <h5 class="text-white mb-4">Wallet Balance</h5>
+                    
+                    <div class="right--wallet d-flex align-items-center justify-content-between">
+                        <h5 class="text-white mb-4">Wallet Balance</h5>
+                        <div class="right-wallet-img">
+                            <img src="@/assets/img/wallet.png" alt="" width="" srcset="">
+                        </div>
+                    </div>
                 <h6 class="small text-white">Available Balance in USD</h6>
                 <h4 class="text-white mb-3">$34,510.15</h4>
                 <div class="d-flex" style="gap:30px">
@@ -21,9 +27,6 @@
                 <div>
                     <p class="small text-white">Last Activity at 21 May 2022</p>
                 </div>
-            </div>
-            <div class="right--wallet ml-auto">
-                <img src="@/assets/img/wallet.png" alt="" width="150" srcset="">
             </div>
         </div>
     </div>

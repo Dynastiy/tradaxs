@@ -10,7 +10,8 @@ const getDefaultState = () => {
         token: '',
         user: {},
         cart: [],
-        wallet:[],
+        wallet: [],
+        loggedIn: false
     };
 };
 
@@ -19,13 +20,16 @@ export default new Vuex.Store({
     plugins: [createPersistedState()],
     state: getDefaultState(),
     getters: {
-      isAuthenticated: state => {
+        isAuthenticated: state => {
             return state.token;
+        },
+        loggedIn: state => {
+            return state.loggedIn;
         },
         getUser: state => {
             return state.user;
         },
-        getWallets: state =>{
+        getWallets: state => {
             return state.wallet
         }
     },
@@ -42,21 +46,25 @@ export default new Vuex.Store({
         SET_WALLET: (state, wallet) => {
             state.wallet = wallet;
         },
+        SET_LOGGEDIN_STATUS: (state, loggedIn) => {
+            state.loggedIn = loggedIn;
+        },
         RESET: state => {
             Object.assign(state, getDefaultState());
         }
     },
     actions: {
-        login: ({ commit }, { token, user, wallet}) => {
+        login: ({ commit }, { token, user, wallet, loggedIn }) => {
             commit('SET_TOKEN', token);
             commit('SET_USER', user);
             commit('SET_WALLET', wallet);
+            commit('SET_LOGGEDIN_STATUS', loggedIn);
 
             // set auth header
             // Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         },
         updateWallet: ({ commit }, { newWallet }) => {
-                commit('UPDATE_WALLET', newWallet);
+            commit('UPDATE_WALLET', newWallet);
         },
         logout: ({ commit }) => {
             commit('RESET', '');

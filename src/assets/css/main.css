@@ -14,7 +14,7 @@ body.active {
 }
 
 .row {
-    padding: 0 ;
+    padding: 0;
     margin: 0;
 }
 
@@ -22,7 +22,6 @@ body.active {
     background-color: var(--main-color);
     padding: 0.8rem 0;
 }
-
 
 .a,
 .b,
@@ -108,29 +107,36 @@ body.active {
     color: #fff;
     font-size: 0.9rem;
 }
+
 .hero--section .container-fluid {
     display: grid;
-    grid-template-columns:40% 60%;
+    grid-template-columns: 40% 60%;
     margin: 3rem 0;
     /* height: 60vh; */
     align-items: center;
 }
+
 .left--side h1 {
     font-weight: bold;
     font-size: 50px;
     line-height: 4rem;
     color: #000;
 }
+
 .left--side p {
     color: #000;
 }
+
 .span {
     color: var(--secondary-color);
 }
+
 .input--field {
     background-color: var(--gray-200)
 }
-.input--field input, .input--field select {
+
+.input--field input,
+.input--field select {
     background-color: transparent;
     display: block;
     width: 100%;
@@ -138,15 +144,15 @@ body.active {
     border-radius: 5px;
     padding: 0.6rem 1rem;
 }
-.input--field select option {
-    font-size: 12px;
-}
-.input--field input:focus{
+
+.input--field input:focus {
     outline: none;
 }
+
 .input--field input::placeholder {
     font-size: 0.8rem;
 }
+
 .input--field .main--btn {
     display: block;
     width: 100%;
@@ -159,12 +165,13 @@ body.active {
     font-size: 0.8rem;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.7);
 }
+
 .text--color {
     color: var(--main-color);
 }
 
 .features {
-    display: grid ;
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
 }
@@ -174,15 +181,18 @@ body.active {
     padding: 1rem;
     border-radius: 10px;
 }
+
 .feature--card h5 {
     font-size: 0.9rem;
     font-weight: bold;
     color: #000;
 }
+
 .feature--card p {
     font-size: 0.8rem;
     color: #000;
 }
+
 .feature--card img {
     width: 35px;
 }
@@ -194,6 +204,7 @@ body.active {
     padding: 1rem;
     border-radius: 10px;
 }
+
 .trading .input--area {
     background-color: #f6f5f5;
     padding: 1rem;
@@ -206,6 +217,7 @@ body.active {
     border: none;
     border-radius: 10px;
 }
+
 .testimonials {
     display: grid;
     width: 70%;
@@ -229,7 +241,6 @@ body.active {
 
 /* Footer  */
 
-
 .footer {
     background: var(--main-color);
     margin-top: 3.3rem;
@@ -246,15 +257,15 @@ body.active {
 }
 
 .footer h5 {
-    color:var(--gray-200);
+    color: var(--gray-200);
 }
 
 
 /* App Header Toggle  */
+
 #mobile {
     display: none;
 }
-
 
 .menu--item.mobile {
     position: fixed;
@@ -265,9 +276,11 @@ body.active {
     z-index: 999;
     width: 80%;
 }
+
 .menu--item.mobile.active {
     right: 0;
 }
+
 .menu--item.mobile a {
     display: block;
     font-size: 1rem;
@@ -275,66 +288,72 @@ body.active {
 }
 
 .profile-tab-nav {
-	min-width: 250px;
+    min-width: 250px;
 }
 
 .tab-content {
-	flex: 1;
+    flex: 1;
 }
 
 .form-group {
-	margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .nav-pills a.nav-link {
-	padding: 15px 20px;
-	border-bottom: 1px solid #ddd;
-	border-radius: 0;
-	color: #333;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    color: #333;
 }
+
 .nav-pills a.nav-link i {
-	width: 20px;
+    width: 20px;
 }
 
 .img-circle img {
-	height: 100px;
-	width: 100px;
-	border-radius: 100%;
-	border: 5px solid #fff;
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    border: 5px solid #fff;
 }
+
 .img-circle span {
-	height: 100px;
-	width: 100px;
+    height: 100px;
+    width: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 4rem;
-	border-radius: 100%;
-	border: 5px solid #fff;
+    border-radius: 100%;
+    border: 5px solid #fff;
     margin: 0 auto;
 }
+
 .img-circle2 img {
-	height: 100px;
-	width: 100px;
-	border-radius: 100%;
-	border: 5px solid #fff;
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    border: 5px solid #fff;
 }
+
 .img-circle2 span {
-	height: 40px;
-	width: 40px;
+    height: 40px;
+    width: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     /* font-size: 4rem; */
-	border-radius: 100%;
-	border: 2px solid #fff;
+    border-radius: 100%;
+    border: 2px solid #fff;
     margin: 0 auto;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
     background-color: var(--secondary-color);
 }
-.error{
+
+.error {
     color: #FF0000;
     background-color: #ff000025;
     border: 1px solid #ff000025;

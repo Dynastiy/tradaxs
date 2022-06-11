@@ -5,7 +5,15 @@
         <div class="">
           <Wallet />
         </div>
-        <div class="top--right" v-if="getUser.role === 2">
+        <div class="text-center d-flex align-items-center" v-if="loader">
+          <span>
+            Checking Merchant Status . . .
+          </span>
+        </div>
+        <div v-show="userData.role === 1">
+          <button class="btn btn-danger">You are not yet a verified Merchant</button>
+        </div>
+        <div class="top--right" v-if="userData.role === 2 " >
           <div class="asset--box bg-white shadow-sm p-3">
             <div>
               <div>
@@ -13,8 +21,7 @@
                   <label for="" class="mb-1">Asset</label>
                   <select name="" id="" v-model="payload.asset">
                     <option value="">Select Asset</option>
-                    <option value="BNB">BNB</option>
-                    <option value="USDT">USDT</option>
+                    <option v-for="wallet in wallets" :key="wallet.id" :value="wallet.coin_type"> {{ wallet.coin_type }} </option>
                   </select>
                   <!-- <input class="" type="text" placeholder="Select Asset"> -->
                 </div>
@@ -23,7 +30,7 @@
                   <select name="" id="" v-model="payload.currency">
                     <option value="">Select Currency</option>
                     <option value="NGN">NGN</option>
-                    <option value="USD">USD</option>
+                    <!-- <option value="USD">USD</option> -->
                   </select>
                 </div>
               </div>
@@ -90,20 +97,30 @@
                 />
               </div>
               <div class="mt-3">
-                <button class="main--button" @click="createOrder()">Create</button>
+                <div class="d-flex justify-content-center" v-if="loading">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                <button class="main--button" v-else @click="createOrder()">Create</button>
               </div>
             </div>
           </div>
         </div>
+        
       </div>
     </div>
 
+
+     <div v-show="checking">
+            <app-loader/>
+        </div>
     <!-- other Content -->
 
     <section>
       <div class="bottom">
         <div class="table">
-          <Table />
+          <Table @loader="setLoading"/>
         </div>
         <!-- <div class="asset--box shadow-sm bg-white shadow-sm p-3 d-flex">
                     <div class="d-flex flex-column justify-content-around">
@@ -137,14 +154,21 @@
 // import ApexCharts from 'apexcharts'
 import Wallet from "@/components/dashboard/walletView.vue";
 import Table from "@/components/dashboard/tableView.vue";
+import appLoader from '@/components/static/appLoader.vue';
 export default {
   components: {
     Wallet,
     Table,
+    appLoader,
     //   ApexCharts
   },
   data() {
     return {
+      loader: false,
+      userData: {},
+      wallets: [],
+      loading: false,
+      checking: false,
       payload: {
         asset: "",
         amountFrom: "",
@@ -153,23 +177,68 @@ export default {
         amount_max: "",
         payment_method: "Tradax Payment",
         payment_time: "",
-        userId: this.$store.getters.getUser[0].id,
+        // userId: this.$store.getters.getUser[0].id,
       },
     };
   },
   methods:{
       createOrder(){
           console.log(this.payload);
+          this.loading = true
+          this.$axios.post('createOffer', this.payload)
+          .then((res)=>{
+            console.log(res);
+          })
+          .catch((err)=>{
+            console.log(err);
+            this.$toastify({
+              text: 'Something went wrong',
+              className: "info",
+              style: {
+                  background: "red",
+              }
+          }).showToast();
+          })
+          .finally(()=>{
+            this.payload = {}
+          })
+      },
+      setLoading(){
+        this.checking = true
+      },
+      getUser(){
+        this.loader = true
+        this.$axios.get('/usersDetails')
+        .then((res)=>{
+          console.log(res);
+          this.userData = res.data.user_details.profile
+          console.log(res.data.user_details.profile)
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+        .finally(()=>{
+          this.loader = false
+        })
+      },
+      getWallets(){
+        this.$axios.get('/usersDetails')
+        .then((res)=>{
+          console.log(res);
+          this.wallets = res.data.user_details.wallets
+          console.log(this.wallets)
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
       }
   },
   mounted(){
-      
+      this.getUser()
+      this.getWallets()
   },
   computed: {
-    getUser() {
-      console.log(this.$store.getters.getUser[0]);
-      return this.$store.getters.getUser[0];
-    },
+    
   },
 };
 </script>

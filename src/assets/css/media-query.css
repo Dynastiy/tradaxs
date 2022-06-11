@@ -2,75 +2,76 @@
         .container-fluid {
             padding: 1rem 2rem;
         }
-       #web {
-           display: none;
-       }
-       #mobile {
-           display: block;
-       }
-       .hero--section .container-fluid {
-           grid-template-columns: auto;
-       }
-       .hero--section .container-fluid img {
-           width: 100%;
-           margin-top: 3rem;
-       }
-       .hero--section .container-fluid h1 {
-           font-size: 2rem;
-           text-align: center;
-           line-height: 48px;
-       }
-       .left--side p{
-           width: 100% !important;
-       }
-       .features {
-           grid-template-columns: 1fr 1fr;
-       }
-       .text--color {
-           font-size: 1.5rem;
-           width: 100% !important;
-       }
-       .trading {
-           width: 100%;
-       }
-       .testimonials {
-           width: 100%;
-       }
-
-       /* Authentication Pages  */
-       .login--content {
-        width: 80%;
-       }
-
-       /* Dashboard  */
-       #main {
-           margin-left: 0;
-           padding: 1rem 2rem;
-       }
-       .app--drawer {
-        display: none;
-    }
-    .dashboard--header  {
-        display: none;
-    }
-    .wallet--container .top{
-        grid-template-columns: auto;
-    }
-    .top--right {
-        grid-template-columns: auto;
-    }
-    .bottom {
-        grid-template-columns: auto;
-    }
-    .table--view {
-        display: none;
-    }
-    .mobile--table {
-        display: block;
-        padding: 1rem;
-        border-radius: 10px;
-    }
-    .dashboard--mobile {
-        display: block
-    }
+        #web {
+            display: none;
+        }
+        #mobile {
+            display: block;
+        }
+        .hero--section .container-fluid {
+            grid-template-columns: auto;
+        }
+        .hero--section .container-fluid img {
+            width: 100%;
+            margin-top: 3rem;
+        }
+        .hero--section .container-fluid h1 {
+            font-size: 2rem;
+            text-align: center;
+            line-height: 48px;
+        }
+        .left--side p {
+            width: 100% !important;
+        }
+        .features {
+            grid-template-columns: 1fr 1fr;
+        }
+        .text--color {
+            font-size: 1.5rem;
+            width: 100% !important;
+        }
+        .trading {
+            width: 100%;
+        }
+        .testimonials {
+            width: 100%;
+        }
+        /* Authentication Pages  */
+        .login--content {
+            width: 80%;
+        }
+        /* Dashboard  */
+        #main {
+            margin-left: 0;
+            padding: 1rem 2rem;
+        }
+        .app--drawer {
+            display: none;
+        }
+        .dashboard--header {
+            display: none;
+        }
+        .wallet--container .top {
+            grid-template-columns: auto;
+        }
+        .top--right {
+            grid-template-columns: auto;
+        }
+        .bottom {
+            grid-template-columns: auto;
+        }
+        .table--view {
+            display: none;
+        }
+        .mobile--table {
+            display: block;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        .dashboard--mobile {
+            display: block
+        }
+        .wallet--address p {
+            font-size: 0.7rem;
+        }
     }

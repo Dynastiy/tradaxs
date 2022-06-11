@@ -6,7 +6,12 @@
                <div class="wallet">
             <div class="left--wallet">
                 <div>
-                    <h5 class="text-white mb-4">Wallet Balance</h5>
+                    <div class="right--wallet d-flex align-items-center justify-content-between">
+                        <h5 class="text-white mb-4">Wallet Balance</h5>
+                        <div class="right-wallet-img">
+                            <img src="@/assets/img/wallet.png" alt="" width="" srcset="">
+                        </div>
+                    </div>
                 <h6 class="small text-white mb-3">Available Balance in USD</h6>
                 <h4 class="text-white mb-3"> <span v-if="coin_details.balance"> {{ coin_details.balance }} </span> <span v-else>0</span>  </h4>
                 <div class="d-flex" style="gap:30px">
@@ -15,14 +20,16 @@
                         <h5 class="text-white">  <span v-if="coin_details.balance"> {{ coin_details.balance }} </span> <span v-else>0</span> </h5>
                     </div>
                     <div class="text-center">
-                        <h6 class="text-white small mb-1">Wallet</h6>
+                        <div>
+                            <h6 class="text-white small mb-1">Wallet</h6>
+                        </div>
                         <h5 class="text-white"> {{ coin_details.coin_type }} </h5>
                     </div>
                 </div>
                 
                 </div>
 
-                <div class="my-3">
+                <div class="my-3 wallet--address">
                         <h6 class="text-white small mb-1">Address</h6>
                         <p class="text-white"> {{ coin_details.address }} </p>
                     </div>
@@ -30,9 +37,6 @@
                 <div>
                     <p class="small text-white">Created {{ timeStamp(coin_details.created_at)}} </p>
                 </div>
-            </div>
-            <div class="right--wallet ml-auto">
-                <img src="@/assets/img/wallet.png" alt="" width="150" srcset="">
             </div>
         </div>
            </div>
@@ -90,19 +94,16 @@ export default {
                 // POST request using fetch with async/await
                     const requestOptions = {
                         method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        data: { "userId": this.$store.getters.getUser[0].id, "coin_type": this.$route.params.id}
+                        data: { "coin_type": String(this.$route.params.id)},
                     };
                     const response = await this.$axios("userWallets", requestOptions);
-                    console.log(response);
                     this.coin_details = response.data.data
-                    console.log(requestOptions.data);
             },
             sendTransaction(){
                 this.loading = true
                 let formData = new FormData()
-                formData.append('coin_type', this.coin_details.coin_type)
-                formData.append('userId', this.$store.getters.getUser[0].id)
+                formData.append('coin_type', this.$route.params.id)
+                // formData.append('userId', this.$store.getters.getUser[0].id)
                 formData.append('amount', this.amount)
                 formData.append('addressTo', this.addressTo)
                 this.$axios.post('send_transaction', formData)
@@ -121,6 +122,7 @@ export default {
 
         },
         mounted() {
+            console.log(this.$store.getters.loggedIn);
            this.getWallet();
         },
 }

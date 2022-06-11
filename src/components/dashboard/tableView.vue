@@ -1,9 +1,6 @@
 <template>
   <div>
     <div>
-        <div v-show="loading">
-            <app-loader/>
-        </div>
       <div class="">
           <div v-if="assetsLoading">
               Fetching Data . . .
@@ -39,161 +36,17 @@
             
       </div>
 
-      <!-- Mobile Table  -->
-      <div class="mobile--table">
-        <div
-          class="
-            table--header
-            d-flex
-            align-items-center
-            justify-content-between
-            mb-4
-          "
-        >
-          <h5 class="font-weight-bold">Cryto Asset</h5>
-          <IconComponent
-            icon="ant-design:plus-outlined"
-            style="font-size: 28px; color: #4054e9"
-          />
-        </div>
-
-        <div class="table--content">
-          <div class="d-flex align-items-center justify-content-between mb-4">
-            <div
-              style="border: 1px solid var(--gray-400); border-radius: 50%"
-              class="p-2"
-            >
-              <span
-                ><img
-                  src="https://digitalchamber.org/wp-content/uploads/2018/02/Bitcoin-icon.png"
-                  class=""
-                  width="30"
-                  alt=""
-                  srcset=""
-              /></span>
-            </div>
-            <div>
-              <h6 class="font-weight-bold">Bitcoin</h6>
-              <p class="small text-secondary">0.6BTC</p>
-            </div>
-            <div>
-              <img src="@/assets/img/rising-fade.png" width="100" alt="" />
-            </div>
-            <div>
-              <h6>$19,321.21</h6>
-              <p style="color: #35dc94; font-size: 0.8rem" class="text-right">
-                <IconComponent icon="ant-design:caret-up-filled" />
-                <span>2.98%</span>
-              </p>
-            </div>
-          </div>
-
-          <div class="d-flex align-items-center justify-content-between mb-4">
-            <div
-              style="border: 1px solid var(--gray-400); border-radius: 50%"
-              class="p-2"
-            >
-              <span
-                ><img
-                  src="https://www.vectorico.com/download/cryptocurrency/ethereum-icon.png"
-                  class=""
-                  width="30"
-                  height="30"
-                  alt=""
-                  srcset=""
-              /></span>
-            </div>
-            <div>
-              <h6 class="font-weight-bold">Ethereum</h6>
-              <p class="small text-secondary">0.89ETH</p>
-            </div>
-            <div>
-              <img src="@/assets/img/falling-fade.png" width="100" alt="" />
-            </div>
-            <div>
-              <h6>$2.287.00</h6>
-              <p style="color: #35dc94; font-size: 0.8rem" class="text-right">
-                <IconComponent icon="ant-design:caret-down-filled" />
-                <span>1.74%</span>
-              </p>
-            </div>
-          </div>
-
-          <div class="d-flex align-items-center justify-content-between mb-4">
-            <div
-              style="border: 1px solid var(--gray-400); border-radius: 50%"
-              class="p-2"
-            >
-              <span
-                ><img
-                  src="https://cryptologos.cc/logos/litecoin-ltc-logo.png"
-                  class=""
-                  width="30"
-                  alt=""
-                  srcset=""
-              /></span>
-            </div>
-            <div>
-              <h6 class="font-weight-bold">Litecoin</h6>
-              <p class="small text-secondary">0.89ETH</p>
-            </div>
-            <div>
-              <img src="@/assets/img/rising-fade.png" width="100" alt="" />
-            </div>
-            <div>
-              <h6>$825.10</h6>
-              <p style="color: #35dc94; font-size: 0.8rem" class="text-right">
-                <IconComponent icon="ant-design:caret-up-filled" />
-                <span>7.19%</span>
-              </p>
-            </div>
-          </div>
-
-          <div class="d-flex align-items-center justify-content-between mb-4">
-            <div
-              style="border: 1px solid var(--gray-400); border-radius: 50%"
-              class="p-2"
-            >
-              <span
-                ><img
-                  src="@/assets/img/chainlink.png"
-                  class=""
-                  width="30"
-                  alt=""
-                  srcset=""
-              /></span>
-            </div>
-            <div>
-              <h6 class="font-weight-bold">Chainlink</h6>
-              <p class="small text-secondary">0.6BTC</p>
-            </div>
-            <div>
-              <img src="@/assets/img/rising-fade.png" width="100" alt="" />
-            </div>
-            <div>
-              <h6>$971.92</h6>
-              <p style="color: #35dc94; font-size: 0.8rem" class="text-right">
-                <IconComponent icon="ant-design:caret-up-filled" />
-                <span>2.98%</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
-import appLoader from '../static/appLoader.vue';
 export default {
-  components: { appLoader },
   data() {
     return {
       assets: [],
       route_id: "",
       selected_coin: "",
-      loading: false,
       assetsLoading: false,
       wallets: []
     };
@@ -204,7 +57,7 @@ export default {
       this.$axios
         .get("allAssets")
         .then((res) => {
-          console.log(res.data.data);
+          // console.log(res.data.data);
           this.assets = res.data.data;
         })
         .catch((err) => {
@@ -215,50 +68,62 @@ export default {
         })
     },
     viewMore(asset) {
-      this.loading = true
+      this.$emit('loader')
       let payload = {
         coin_type: asset.asset_name,
-        userId: this.$store.getters.getUser[0].id,
       };
-      (this.selected_coin = asset.asset_name), 
+      (this.selected_coin = asset.asset_name);
+      console.log(this.selected_coin);
       console.log(payload);
       this.$axios
         .post("/create_wallet", payload)
         .then((res) => {
-          console.log(res.data.wallet);
-          let wallet = res.data.wallet;
-          this.$store.dispatch("updateWallet", { wallet });
-          
+          console.log(res.data)
         })
         .catch((err) => {
           console.log(err);
         })
         .finally(() => {
+          this.getWallets()
           this.checkWallet()
-          this.$router.push(`/wallet/${this.route_id}`);
+          this.$router.push(`/wallet/${this.selected_coin}`);
         });
-        this.loading = false
     },
     checkWallet() {
-      // const data = "BTC";
-      const obj = this.wallets;
-      console.log(obj);
-      const greaterThanTen = obj.find(
-        (element) => element.wallet.coin_type == this.selected_coin
-      );
-      this.route_id = greaterThanTen.wallet.coin_type;
-      console.log(greaterThanTen.wallet.coin_type);
+      // let obj = this.wallets
+      // console.log(obj);
+      // const value = obj.find(elem => elem.coin_type === this.selected_coin);
+      // console.log(value.coin_type); 
+      // this.route_id = value.coin_type
     },
+    getWallets(){
+      this.$axios.get('/usersDetails')
+    .then((res)=>{
+      console.log(res);
+      this.wallets = res.data.user_details.wallets
+      console.log(res.data.user_details.wallets)
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+    },
+    getUser(){
+    this.$axios.get('/usersDetails')
+    .then((res)=>{
+      console.log(res);
+      this.userData = res.data.user_details.profile
+      console.log(res.data.user_details.profile)
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  }
   },
   mounted() {
     this.getAssets();
-    this.wallets = this.$store.getters.getWallets
+    this.getUser();
+    this.getWallets()
   },
-  beforeUpdate() {
-    console.log(`At this point, Virtual DOM has not re-rendered or patched yet.`)
-    // Logs the counter value every second, before the DOM updates.
-    console.log(this.wallets)
-  }
 };
 </script>
 

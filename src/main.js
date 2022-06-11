@@ -12,6 +12,8 @@ import '@/assets/css/media-query.css'
 
 import instance from '@/plugins/axios.js'
 
+import http from '@/plugins/http.js'
+
 import "toastify-js/src/toastify.css"
 import toastify from 'toastify-js'
 
@@ -22,6 +24,8 @@ Vue.component("IconComponent", Icon)
 import VueClipboard from 'vue-clipboard2'
 
 Vue.use(VueClipboard)
+
+Vue.prototype.$http = http
 
 Vue.prototype.$axios = instance
 Vue.prototype.$toastify = toastify
@@ -38,6 +42,6 @@ new Vue({
     toastify,
     mounted() {
         AOS.init()
-      },
+    },
     render: h => h(App)
 }).$mount('#app')

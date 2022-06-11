@@ -10,7 +10,7 @@
            </div>
 
             <div class="right--side d-flex align-items-center" style="gap:20px">
-                <h5 class="small" v-if="getUser">Hello, {{ getUser[0].username }} </h5>
+                <h5 class="small" v-if="userData">Hello, {{ userData.username }} </h5>
                 <!-- <div class="rounded-circle d-flex align-items-center justify-content-center" style="background-color: #E1E5F8; width:30px; height:30px">
                      <IconComponent icon="bx:user" />
                 </div> -->
@@ -41,6 +41,11 @@ export default {
 // 		Icon,
 // 	},
 // }
+data(){
+    return{
+        userData: {}
+    }
+},
 methods:{
     async logout(){
         let accessToken = this.$store.getters.isAuthenticated
@@ -61,11 +66,20 @@ methods:{
            console.log(error);
        }
     },
+    getUser(){
+    this.$axios.get('/usersDetails')
+    .then((res)=>{
+      console.log(res);
+      this.userData = res.data.user_details.profile
+      console.log(res.data.user_details.profile)
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  }
 },
-computed:{
-        getUser(){
-            return this.$store.getters.getUser;
-        }
-    }
+mounted(){
+    this.getUser()
+}
 }
 </script>
