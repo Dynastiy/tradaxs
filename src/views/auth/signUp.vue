@@ -56,7 +56,6 @@
 </template>
 
 <script>
-    import Axios from 'axios'
 export default {
     data(){
         return{
@@ -82,7 +81,7 @@ export default {
             formData.append("phone", this.credentials.phone)
             formData.append("password", this.credentials.password)
            try {
-               let res = await Axios.post('https://api.tradaxs.com/api/v1/auth/register', formData, {
+               let res = await this.$axios.post('/auth/register', formData, {
                })
                console.log(res);
                 this.$toastify({

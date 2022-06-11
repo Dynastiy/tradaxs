@@ -50,7 +50,7 @@ instance.interceptors.response.use(function(response) {
         }
     }).showToast();
     console.log(error.response.data.errors)
-    if (error.response.data.errors == 'Attempt to read property "id" on null') {
+    if (error.response.data.errors == 'Attempt to read property "id" on null') {    
         router.push('/login')
     }
     // Any status codes that falls outside the range of 2xx cause this function to trigger
