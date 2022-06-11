@@ -107,9 +107,7 @@ export default {
        }
     },
     async created(){
-        if(!this.$store.getters.loggedIn){
-            this.$router.push('/user')
-        }
+        
     }
 }
 </script>
